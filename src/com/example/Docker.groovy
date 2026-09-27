@@ -1,5 +1,5 @@
 #!/user/bin/env groovy
-package com.examlple
+package com.example
 
 class Docker implements Serializable{
 
@@ -13,7 +13,7 @@ class Docker implements Serializable{
         script.echo "building the adocker image..."
         script.withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]){
             script.sh "docker build -t $imageName ."
-            script.sh "echo '${script.PASS}' | docker login -u ${script.USER} --password-stdin"
+            script.sh "echo '${script.PASS}' | docker login -u '${script.USER}' --password-stdin"
             script.sh "docker push $imageName"
         }
     }
